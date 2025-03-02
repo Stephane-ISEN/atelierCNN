@@ -17,6 +17,11 @@ Dans cette deuxième partie, nous allons développer un modèle CNN "from scratc
 
 Participez à l'atelier en téléchargeant le notebook : [cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb).
 
+Avant tout, il faut préparer l'environnement, en important les packages : 
+```bash
+pip install torch matplotlib
+```
+
 Les étapes à suivre sont :
 - **Importer les librairies utiles pour l'atelier**
 - **Vérifier la présence de capacité de calcul GPU sur l'ordinateur**
