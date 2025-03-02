@@ -30,4 +30,12 @@ Pour travailler avec **Jupyter Notebook (.ipynb)**, installer l'extension **"Jup
    ```bash
    pip install jupyter
    ```
-4. Ouvrir un fichier `.ipynb` et **VS Code activera automatiquement l’environnement Jupyter**.  
+4. Ouvrir un fichier `.ipynb` et **VS Code activera automatiquement l’environnement Jupyter**.
+
+## **Présentation des CNN**
+**Avant de commencer l’atelier, posons les bases de l’intelligence artificielle, des réseaux de neurones et des CNN.** Les réseaux de neurones convolutifs (**CNN**) sont une architecture du **deep learning**, efficace pour le **traitement des images**. Inspirés du fonctionnement du cerveau humain, ils sont capables d’analyser, de détecter des motifs et de classifier des images avec une grande précision. Cette technologie est largement utilisée dans des domaines variés comme la vision par ordinateur, la surveillance environnementale et l’imagerie satellite.
+[Présentation des CNN](https://github.com/Stephane-ISEN/atelierCNN/blob/ch1_intro/supports/cnn_prez.pdf)
+
+## **Navigation**
+- [Accueil](https://github.com/Stephane-ISEN/atelierCNN)
+- [Chapitre 2 : préparation des données](https://github.com/Stephane-ISEN/atelierCNN/tree/ch2_prepa_data)
