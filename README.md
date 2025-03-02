@@ -30,6 +30,12 @@ Au cours de ces deux journées, les participants apprendront à :
 
 📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
 
+### Déroulé de l'atelier
+- [Chapitre 1 : introduction]()
+- [Chapitre 2 : préparation des données]()
+- [Chapitre 3 : Le CNN dans le détail]()
+- [Chapitre 4 : Un CNN à partir de zéro]()
+
 ### **Sur le territoire**
 
 ![Finist'AI Club](ressources/finistaiclub.png)
