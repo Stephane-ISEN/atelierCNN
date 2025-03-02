@@ -15,7 +15,7 @@ téléchargez les fichiers suivants :
 ## Un CNN à partir de zéro
 Dans cette deuxième partie, nous allons développer un modèle CNN "from scratch", afin de classifier correctement des images satellitaires de 4 types : désert, foret, océan et nuageux.
 
-Participez à l'atelier en téléchargeant le notebook : (cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb)[https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb], suivez les étapes pas à pas et créez un CNN complet.
+Participez à l'atelier en téléchargeant le notebook : [cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/cnn/notebooks/notebook2_SatelliteImages_Classification_avec_trous.ipynb).
 
 Les étapes à suivre sont :
 - **Importer les librairies utiles pour l'atelier**
