@@ -1,31 +1,33 @@
 # 🛰️ Atelier CNN - Classification d'Images Satellites  
 
-Les réseaux de neurones convolutifs (**CNN**) sont une des technologies utilisées dans l'analyse et le traitement des images. Grâce à cet atelier, vous allez découvrir **comment entraîner un modèle de deep learning** capable de classifier des **images satellites** en différentes catégories.  
-Cet apprentissage pratique vous permettra de manipuler des données réelles et de concevoir une **solution complète**, de la préparation des données jusqu’au déploiement d’une **API permettant d’exploiter le modèle entraîné**.  
+## 🏫 **VS Code**
+**Visual Studio Code (VS Code)** est un **éditeur de code léger, puissant et extensible**, développé par Microsoft. Il est largement utilisé pour le développement Python, notamment grâce à son **intégration fluide avec des outils comme Jupyter Notebook et Git**. 
 
-**📅 Durée : 2 jours** 
+- [Téléchargement de VS Code](https://code.visualstudio.com/)  
+- [Extension Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Extension Jupyter Notebook](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
-### 🏫 **Intervenants :**  
-- **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
-- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA
+### 🐍 **Installation du package Python dans VS Code**  
+Pour **configurer Python sous VS Code**, installe l'extension officielle :  
+📌 **"Python"** (_Microsoft, ID : ms-python.python_)  
 
-![intervenants](ressources/intervenants.png)
+#### ✅ **Installation :**
+1. Ouvrir **VS Code**.  
+2. Aller dans **Extensions** (`Ctrl + Shift + X` ou `Cmd + Shift + X` sur Mac).  
+3. Chercher **Python** et installe **l’extension Microsoft**.  
+4. Vérifier si **Python installé** (`python --version` pour vérifier).  
+5. Sélectionne l’interpréteur Python (`Ctrl + Shift + P` → `Python: Select Interpreter`).  
 
-### 🌍 **Cas concret : Classification d'images satellites**  
-Lors de cet atelier, nous allons développer un modèle de **réseau de neurones convolutifs (CNN)** capable de classer des images satellites en **4 catégories** :  
-- 🌲 **Forêts**  
-- 🌊 **Mer**  
-- 🏜️ **Désert**  
-- ☁️ **Nuageux**  
+---
 
-### 🚀 **Objectifs pédagogiques**  
-Au cours de ces deux journées, les participants apprendront à :  
-✔️ **Préparer les données** pour entraîner un CNN  
-✔️ **Développer un réseau CNN** adapté à la classification d'images 
-✔️ **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
-✔️ **Construire une API** pour interagir avec le modèle entraîné  
-✔️ **Structurer les données** pour une meilleure exploitation  
+### 📚 **Utiliser Jupyter Notebook dans VS Code**  
+Pour travailler avec **Jupyter Notebook (.ipynb)**, installer l'extension **"Jupyter"** (_Microsoft, ID : ms-toolsai.jupyter_).  
 
-📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur.  
-
-
+#### ✅ **Installation :**
+1. Ouvrir **VS Code**.  
+2. Installer l’extension **Jupyter** via l’onglet Extensions.  
+3. Vérifier que `jupyter` est installé dans l'environnement Python :  
+   ```bash
+   pip install jupyter
+   ```
+4. Ouvrir un fichier `.ipynb` et **VS Code activera automatiquement l’environnement Jupyter**.  
