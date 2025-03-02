@@ -2,7 +2,7 @@
 
 ## Préparation des données
 Dans cette introduction, nous allons apprendre à préparer les données pour qu'ils soient prêts à être utilisés pour un apprentissage par CNN.
-Vous allez pouvoir pratiquer directement ce traitement de données
+Vous allez tester le code sur le [notebook mis à votre disposition](https://github.com/Stephane-ISEN/atelierCNN/blob/ch2_prepa_data/cnn/notebooks/notebook1%20_data_preparation_avec_trous.ipynb).
 
 ### Préparation de l'environnement
 Dans un projet d’IA, comme l’entraînement d’un **CNN**, l’utilisation d’un environnement virtuel garantit que toutes les dépendances sont bien organisées et reproductibles.  
