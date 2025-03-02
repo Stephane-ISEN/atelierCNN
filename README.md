@@ -3,6 +3,8 @@
 ## 🏫 **VS Code**
 **Visual Studio Code (VS Code)** est un **éditeur de code léger, puissant et extensible**, développé par Microsoft. Il est largement utilisé pour le développement Python, notamment grâce à son **intégration fluide avec des outils comme Jupyter Notebook et Git**. 
 
+![VS Code](ressources/vscode.png)
+
 - [Téléchargement de VS Code](https://code.visualstudio.com/)  
 - [Extension Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 - [Extension Jupyter Notebook](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
