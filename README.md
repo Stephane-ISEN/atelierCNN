@@ -33,8 +33,8 @@ Au cours de ces deux journées, les participants apprendront à :
 ### Déroulé de l'atelier
 - [Chapitre 1 : introduction](https://github.com/Stephane-ISEN/atelierCNN/tree/ch1_intro)
 - [Chapitre 2 : préparation des données](https://github.com/Stephane-ISEN/atelierCNN/tree/ch2_prepa_data)
-- [Chapitre 3 : Le CNN dans le détail](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_details)
-- [Chapitre 4 : Un CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_zero)
+- [Chapitre 3 : Le CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_zero)
+- [Chapitre 4 : Finetuning d'un CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_finetuning)
 
 ### **Sur le territoire**
 
