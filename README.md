@@ -3,8 +3,7 @@
 Les réseaux de neurones convolutifs (**CNN**) sont une des technologies utilisées dans l'analyse et le traitement des images. Grâce à cet atelier, vous allez découvrir **comment entraîner un modèle de deep learning** capable de classifier des **images satellites** en différentes catégories.  
 Cet apprentissage pratique vous permettra de manipuler des données réelles et de concevoir une **solution complète**, de la préparation des données jusqu’au déploiement d’une **API permettant d’exploiter le modèle entraîné**.  
 
-## 📅 Durée : 2 jours  
-## 🎯 Objectif : Développer un CNN pour classifier des images satellites  
+** 📅 Durée : 2 jours  ** 
 
 ### 🏫 **Intervenants :**  
 - **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
