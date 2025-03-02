@@ -19,3 +19,5 @@ Les étapes sont, cette fois-ci :
 - **Evaluer le nouveau modèle**
 
 ## Navigation
+- [Chapitre 3 : Le CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_zero)
+- [Chapitre 5: CNN accessible à travers une API Web](https://github.com/Stephane-ISEN/atelierCNN/tree/ch5_api)
