@@ -7,7 +7,9 @@ Cet apprentissage pratique vous permettra de manipuler des données réelles et 
 
 ### 🏫 **Intervenants :**  
 - **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
-- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA  
+- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA
+
+![intervenants](ressources/intervenants.png)
 
 ### 🌍 **Cas concret : Classification d'images satellites**  
 Lors de cet atelier, nous allons développer un modèle de **réseau de neurones convolutifs (CNN)** capable de classer des images satellites en **4 catégories** :  
@@ -20,7 +22,7 @@ Lors de cet atelier, nous allons développer un modèle de **réseau de neurones
 Au cours de ces deux journées, les participants apprendront à :  
 ✔️ **Préparer les données** pour entraîner un CNN  
 ✔️ **Développer un réseau CNN** adapté à la classification d'images 
-✔️ **Comprendre les enjeux étique** sur l'explicabilité et le droit à l'image
+✔️ **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
 ✔️ **Construire une API** pour interagir avec le modèle entraîné  
 ✔️ **Structurer les données** pour une meilleure exploitation  
 
