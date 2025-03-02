@@ -30,12 +30,12 @@ Au cours de ces deux journées, les participants apprendront à :
 
 📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
 
-### **A venir**
+### **Sur le territoire**
 
 ![Finist'AI Club](ressources/finistaiclub.png)
 
 ![AI Days](ressources/aidays.png)
 
-![Ocean Hackathon](ressources/oceanhackathon.png)
+![Ocean Hackathon](ressources/oceanhackathon.jpg)
 
 
