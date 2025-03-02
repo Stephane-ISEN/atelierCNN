@@ -7,7 +7,8 @@ Depuis quelques années, la mise à disposition de modèles de taille gigantesqu
 
 Cette approche est réputée souvent meilleure que l'entrainement from scratch, celà va-t-il se confirmer pour notre cas d'usage ?
 
-Pour tester le finetuning, vous allez travailler avec un nouveau notebook : 
+Pour tester le finetuning, vous allez travailler avec un nouveau notebook : [cnn/notebooks/notebook3_SatelliteImages_Finetuning_avec_trous.ipynb](cnn/notebooks/notebook3_SatelliteImages_Finetuning_avec_trous.ipynb)
+
 Les étapes sont, cette fois-ci : 
 - **Importer les librairies**
 - **Vérifier la présence de capacité de calcul GPU sur l'ordinateur**
