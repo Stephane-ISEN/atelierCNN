@@ -5,9 +5,9 @@ Après avoir vu comment préparer les données pour l'apprentissage d'un CNN, il
 Nous commencerons par aborder les briques élémentaires qui font sa spécificité. La convolution en est une, et nous l'illustrerons en manipulant cet outil sur Excel, afin de comprendre comment cet opérateur mathématique peut extraire textures et caractéristiques dans une image.
 téléchargez les fichiers suivants : 
 
--[supports/CNN sur MNIST.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/CNN%20sur%20MNIST.xlsm) 
--[supports/Visualisation d'une convolution - fonction d'activation.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/Visualisation%20d'une%20convolution%20-%20fonction%20d'activation.xlsm) 
--[supports/Visualisation d'une convolution.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/Visualisation%20d'une%20convolution.xlsm)
+- [supports/CNN sur MNIST.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/CNN%20sur%20MNIST.xlsm) 
+- [supports/Visualisation d'une convolution - fonction d'activation.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/Visualisation%20d'une%20convolution%20-%20fonction%20d'activation.xlsm) 
+- [supports/Visualisation d'une convolution.xlsm](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/Visualisation%20d'une%20convolution.xlsm)
 
 ## Présentation détaillée du CNN
 [Appronfondissement du CNN](https://github.com/Stephane-ISEN/atelierCNN/blob/ch3_cnn_zero/supports/cnn_prez.pdf) avant d'aborder la pratique.
