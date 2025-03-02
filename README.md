@@ -22,10 +22,20 @@ Lors de cet atelier, nous allons développer un modèle de **réseau de neurones
 Au cours de ces deux journées, les participants apprendront à :  
 ✔️ **Préparer les données** pour entraîner un CNN  
 ✔️ **Développer un réseau CNN** adapté à la classification d'images 
+
 ✔️ **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
+
 ✔️ **Construire une API** pour interagir avec le modèle entraîné  
 ✔️ **Structurer les données** pour une meilleure exploitation  
 
-📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur.  
+📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
+
+### **A venir**
+
+![Finist'AI Club](ressources/finistaiclub.png)
+
+![AI Days](ressources/aidays.png)
+
+![Ocean Hackathon](ressources/oceanhackathon.png)
 
 
