@@ -28,11 +28,12 @@ Tout le code se trouve dans le répertoire ``cnn_app\api``.
   ```bash
   pip install --upgrade -r /code/requirements.txt
   ```
-- recopier le fichier ``.pth`` dans le répertoire ``cnn_app\api\app\modele``.
+### le fichier cnn.py
+recopier le fichier ``.pth`` dans le répertoire ``cnn_app\api\app\modele``.
 
 Le fichier ``.pth`` contient un dictionnaire d'états du modèle. Un dictionnaire d'état de modèle est un dictionnaire Python qui associe chaque couche du modèle à ses paramètres (poids et biais). Ce dictionnaire ne contient que les paramètres du modèle, pas l'architecture elle-même.
 
-- Ouvrir le fichier ``cnn.py``.
+Ouvrir le fichier ``cnn.py``.
 
 dans le ``try`` recopier le code suivant :
 ```python
@@ -71,3 +72,62 @@ Enfin, le code fait l'interprétation et récupère les résultats.
     return 
 ```
 **La variable ``predicted.item()`` contient le code de la classe ayant la meilleur prédition. Nous souhaitons que le retour de la fonction predict_image() soit une chaine de caractères grâce aux dictionnaire LABEL, qui fait conrrespondre les classes à leurs labels.**
+
+### le fichier config.py
+contient tous les infos de configuration sous forme de constante. Pour le moment, seul le nom du répertoire devant récolter les images nous interrese.
+
+### le fichier main.py
+contient le code de l'API.
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()  # Création de l'application FastAPI
+
+@app.get("/")  # Définition d'un endpoint GET accessible à la racine "/"
+async def index():
+    return "API Prediction!"  # Retourne un message simple en réponse
+```
+
+**Que fait ce code ?**
+1. **Importation de FastAPI** → `from fastapi import FastAPI`
+2. **Création de l’application API** → `app = FastAPI()`
+3. **Définition d’un endpoint (`GET /`)** :
+   - `@app.get("/")` → Crée une route qui répond aux requêtes HTTP `GET` à l'URL **racine (`/`)**.
+   - `async def index():` → Fonction **asynchrone** qui sera exécutée lorsque l’endpoint est appelé.
+   - `return "API Prediction!"` → Retourne **une simple réponse textuelle**.
+
+Le endpoint suivant est celui-ci :
+```python
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.post("/predictions/satelite/")
+async def upload_image(file: UploadFile = File(...)):
+  file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+
+  if not file.filename.endswith(("jpg", "jpeg", "png")):
+    raise HTTPException(status_code=400, detail="Format non supporté")
+
+  with open(file_path, "wb") as buffer :
+    shutil.copyfileobj(file.file, buffer)
+
+  label = #A compléter
+  return #A compléter
+```
+
+Ce code définit un **endpoint FastAPI** permettant de recevoir une **image satellite**, de la **stocker**, puis d’utiliser un modèle **CNN** pour effectuer une **prédiction** de classification.
+- `os.makedirs(UPLOAD_FOLDER, exist_ok=True)` : **Crée automatiquement le dossier** pour stocker les images si celui-ci n’existe pas encore.
+- `@app.post("/predictions/satelite/")` : Définit un **endpoint FastAPI** qui accepte des requêtes **`POST`** sur l’URL `/predictions/satelite/`.  
+- `file: UploadFile = File(...)` : Attend **un fichier image** en entrée.
+- **Concatène** `UPLOAD_FOLDER` et le nom du fichier pour obtenir son chemin de sauvegarde.
+- Vérifie que l’image est bien de **type JPEG ou PNG**, **Sinon**, retourne une **erreur HTTP 400** (`Bad Request`).
+- **Ouvre un fichier** en mode **écriture binaire (`wb`)** et **Copie les données de l’image** envoyée dans ce fichier.
+- **A vous de compléter ``label=`` pour faire appel à `predict_image()` et récupérer la prédiction.**
+- **Retour de la réponse JSON : a vous de la construire pour retourner le nom du fichier et la prédiction faite par le CNN**.
+
+**Comment tester cette API ?**
+dans le terminal, lancez le serveur uvicorn :
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
+   ```
+
