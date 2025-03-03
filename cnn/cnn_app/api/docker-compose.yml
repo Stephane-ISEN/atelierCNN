@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .  # Chemin vers le répertoire contenant le Dockerfile
+      dockerfile: Dockerfile  # Facultatif si le fichier s'appelle Dockerfile
+    container_name: api_cnn
+    ports:
+      - "8081:80"  # Redirige le port 8000 de l'hôte vers le port 80 du conteneur
+    volumes:
+      - ./app:/code/app  # Montage pour recharger automatiquement le code (optionnel)
+      - ./requirements.txt:/code/requirements.txt  # Montage pour recharger automatiquement les dépendances (optionnel)
+      - ./satelite_images:/code/satelite_images
+    environment:
+      - PYTHONUNBUFFERED=1  # Assure que les logs apparaissent immédiatement dans la console
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+  db:
+    image: mysql
+    container_name: db_cnn
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=cnn 
+      - MYSQL_USER=cnn_user
+      - MYSQL_PASSWORD=cnn_pwd
+    ports:
+      - 3307:3306
+    volumes:
+      - ./data/databases:/var/lib/mysql
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+  adminer:
+    image: adminer
+    container_name: adminer_cnn
+    restart: always
+    ports:
+      - 8080:8080
