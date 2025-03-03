@@ -164,7 +164,7 @@ Accédez à la documentation interactive :
 
 ![api docs](ressources/api_docs.png)
 
-**Vous pouvez maintenant tester l’upload d’images et obtenir des prédictions à partir de l'archive test !**
+**Vous pouvez maintenant tester l’upload d’images et obtenir des prédictions à partir de l'archive tests !**
 
 ## navigation
 - [Chapitre 4 : Finetuning d'un CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_finetuning)
