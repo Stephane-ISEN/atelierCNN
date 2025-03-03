@@ -19,6 +19,7 @@ Un modèle de **classification d’images satellites** peut être exposé sous f
 - de gérer facilement les requêtes HTTP,
 - d'assurer une **exécution asynchrone optimisée**,
 - d'intégrer automatiquement une **documentation interactive** (`/docs`).
+![FastAPI](ressources/fastapi-logo.png)
 
 ### **Endpoint dans FastAPI**
 Un **endpoint** est une route définie dans FastAPI qui répond à une requête HTTP (`GET`, `POST`…).  
@@ -161,4 +162,10 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
 Accédez à la documentation interactive :  
 `http://127.0.0.1:8081/docs`
 
-**Vous pouvez maintenant tester l’upload d’images et obtenir des prédictions !**
+![api docs](ressources/api_docs.png)
+
+**Vous pouvez maintenant tester l’upload d’images et obtenir des prédictions à partir de l'archive test !**
+
+## navigation
+- [Chapitre 4 : Finetuning d'un CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_finetuning)
+- [Chapitre 6 : Conteneurisation d'une API avec un modèle CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch6_docker)
