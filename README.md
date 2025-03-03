@@ -1,7 +1,7 @@
 # 🛰️ **Atelier CNN - Classification d'Images Satellites**  
 ## **Introduction à Docker et ses concepts clés**  
 
-** Pour l’installation de Docker, consultez le site officiel :** [https://www.docker.com/](https://www.docker.com/)  
+Pour l’installation de Docker, consultez le site officiel : [https://www.docker.com/](https://www.docker.com/)  
 
 Docker est une **technologie de conteneurisation** qui permet d’exécuter des applications de manière **isolée, portable et reproductible**. Il facilite le déploiement en encapsulant **le code, les dépendances et la configuration** dans des **conteneurs**.
 
