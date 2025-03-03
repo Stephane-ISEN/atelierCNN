@@ -1,49 +1,96 @@
 # 🛰️ Atelier CNN - Classification d'Images Satellites  
 
-Les réseaux de neurones convolutifs (**CNN**) sont une des technologies utilisées dans l'analyse et le traitement des images. Grâce à cet atelier, vous allez découvrir **comment entraîner un modèle de deep learning** capable de classifier des **images satellites** en différentes catégories.  
-Cet apprentissage pratique vous permettra de manipuler des données réelles et de concevoir une **solution complète**, de la préparation des données jusqu’au déploiement d’une **API permettant d’exploiter le modèle entraîné**.  
+## **Création d’une Interface Web pour l’Upload d’Images avec Streamlit et API FastAPI**  
 
-**📅 Durée : 2 jours** 
+###**Introduction à Streamlit**  
+[Streamlit](https://streamlit.io/) est un **framework Python** permettant de créer des applications web **interactives et intuitives** sans avoir besoin d’un développement frontend complexe. Il est particulièrement utile pour des **applications de Data Science, Machine Learning et IA**.  
 
-### **Intervenants :**  
-- **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
-- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA
+**Pourquoi utiliser Streamlit ?**  
+- **Simplicité** : Interface web rapide à mettre en place en quelques lignes de code.  
+- **Intégration avec les API** : Permet de communiquer facilement avec des modèles d’IA via des requêtes HTTP.  
+- **Visualisation** : Permet d'afficher facilement des **images, graphiques et données JSON**.  
 
-![intervenants](ressources/intervenants.png)
+![logo streamlit](ressources/streamlit-logo.png)
+---
 
-### **Cas concret : Classification d'images satellites**  
-Lors de cet atelier, nous allons développer un modèle de **réseau de neurones convolutifs (CNN)** capable de classer des images satellites en **4 catégories** :  
-- **Forêts**  
-- **Mer**  
-- **Désert**  
-- **Nuageux**  
+### **Développement de l'application Streamlit**
+Nous allons créer une **interface web** permettant à l’utilisateur de **téléverser une image** et de **l’envoyer à une API FastAPI** pour obtenir une **prédiction**.  
 
-### **Objectifs pédagogiques**  
-Au cours de ces deux journées, les participants apprendront à :  
-- **Préparer les données** pour entraîner un CNN  
-- **Développer un réseau CNN** adapté à la classification d'images 
-- **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
-- **Construire une API** pour interagir avec le modèle entraîné  
-- **Structurer les données** pour une meilleure exploitation
-![diagramme de fulx](ressources/cnn_flux.drawio.png)
+![diagramme de flux](ressources/cnn_flux.drawio.png)
 
-📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
+**Structure du projet**
+```
+📁 client
+│── 📄 app.py             # Fichier principal Streamlit
+│── 📄 config.py          # Contient l'URL de l'API
+```
 
-### Déroulé de l'atelier
-- [Chapitre 1 : introduction](https://github.com/Stephane-ISEN/atelierCNN/tree/ch1_intro)
-- [Chapitre 2 : préparation des données](https://github.com/Stephane-ISEN/atelierCNN/tree/ch2_prepa_data)
-- [Chapitre 3 : Le CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_zero)
-- [Chapitre 4 : Finetuning d'un CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_finetuning)
-- [Chapitre 5: CNN accessible à travers une API Web](https://github.com/Stephane-ISEN/atelierCNN/tree/ch5_api)
-- [Chapitre 6 : Conteneurisation d'une API avec un modèle CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch6_docker)
-- [Chapitre 7 : Un client pour l'API](https://github.com/Stephane-ISEN/atelierCNN/tree/ch7_client)
+**Fichier `config.py`**
+Ce fichier contient la configuration de l’API vers laquelle nous allons envoyer les images.  
 
-### **Sur le territoire**
+```python
+API_URL = "http://127.0.0.1:8081/predictions/satelite/"
+```
+Pensez à modifier cette URL si votre API tourne sur un autre serveur ou port.
 
-![Finist'AI Club](ressources/finistaiclub.png)
+**Fichier `app.py` (Application Streamlit)**
+Voici le **code complet** pour l’interface web **Streamlit**.
 
-![AI Days](ressources/aidays.png)
+```python
+import streamlit as st
+import requests
+from config import API_URL
 
-![Ocean Hackathon](ressources/oceanhackathon.jpg)
+# Titre de l'application
+st.title("📤 Upload d'image et envoi vers une API")
 
+# Formulaire de dépôt de fichier
+with st.form("upload_form"):
+    uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
+    submit_button = st.form_submit_button("Envoyer")
+
+# Si le formulaire est soumis
+if submit_button:
+    if uploaded_file is not None:
+        # Affiche l'image uploadée
+        st.image(uploaded_file, caption="Image envoyée", use_column_width=True)
+        
+        # Prépare le fichier pour l'envoi à l'API
+        files = {"file": (uploaded_file.name, uploaded_file, uploaded_file.type)}
+
+        # Envoie la requête POST à l'API
+        try:
+            response = requests.post(API_URL, files=files)
+            response.raise_for_status()  # Vérifie si l'API retourne une erreur HTTP
+
+            # Affiche la réponse de l'API
+            st.success("✅ Réponse de l'API :")
+            st.json(response.json())
+
+        except requests.exceptions.RequestException as e:
+            st.error(f"❌ Erreur lors de la communication avec l'API : {e}")
+    else:
+        st.warning("⚠️ Veuillez sélectionner une image avant d'envoyer.")
+```
+
+**Lancer l’application Streamlit et l’API**
+Avant de démarrer **Streamlit**, assurez-vous que votre **API FastAPI** est bien lancée.
+
+**Démarrer l’API FastAPI**
+Dans un terminal, lancez le serveur FastAPI avec **Uvicorn** :
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
+```
+**L'API sera accessible à l'adresse** : `http://127.0.0.1:8081/docs`
+
+**Lancer l’application Streamlit**
+Dans un autre terminal, exécutez :
+```bash
+streamlit run app.py
+```
+Ouvrez votre navigateur et accédez à : `http://localhost:8501`
+
+![streamlit](ressources/client.png)
+
+## Navigation
 
