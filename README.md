@@ -131,3 +131,6 @@ dans le terminal, lancez le serveur uvicorn :
    uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
    ```
 
+Rendez-vous sur votre navigateur préférez, à l'url suivant : `127.0.0.1:8081/docs`
+
+Vous allez pouvoir utiliser l'OpenDoc pour tester votre EndPoint.
