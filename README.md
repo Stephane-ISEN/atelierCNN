@@ -26,6 +26,7 @@ Un **endpoint** est une route définie dans FastAPI qui répond à une requête 
 ## Développement de la Web API
 Tout le code se trouve dans le répertoire ``cnn_app\api``.
 - Sur votre machine créez un environnement virtuel dans ce répertoire.
+- Activez l'environnement virtuel.
 - Puis installez les dépedances suivantes :
   ```bash
   pip install --upgrade -r /code/requirements.txt
