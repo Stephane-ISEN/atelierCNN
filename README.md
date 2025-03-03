@@ -1,49 +1,39 @@
 # 🛰️ Atelier CNN - Classification d'Images Satellites  
 
-Les réseaux de neurones convolutifs (**CNN**) sont une des technologies utilisées dans l'analyse et le traitement des images. Grâce à cet atelier, vous allez découvrir **comment entraîner un modèle de deep learning** capable de classifier des **images satellites** en différentes catégories.  
-Cet apprentissage pratique vous permettra de manipuler des données réelles et de concevoir une **solution complète**, de la préparation des données jusqu’au déploiement d’une **API permettant d’exploiter le modèle entraîné**.  
+## interrêt de structurer les données pour l'IA en passant par une bdd ?
 
-**📅 Durée : 2 jours** 
+## créer la base de données
+Nous allons passer par docker pour créer une base SQL
 
-### **Intervenants :**  
-- **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
-- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA
+le docker-compose
+```yaml
+```
 
-![intervenants](ressources/intervenants.png)
+le sql pour l'init de la base
+```sql
+```
+lancer les conteneur avec la commande docker-compose
 
-### **Cas concret : Classification d'images satellites**  
-Lors de cet atelier, nous allons développer un modèle de **réseau de neurones convolutifs (CNN)** capable de classer des images satellites en **4 catégories** :  
-- **Forêts**  
-- **Mer**  
-- **Désert**  
-- **Nuageux**  
+Il est possible d'utiliser adminer pour vérifier l'existance de la base.
 
-### **Objectifs pédagogiques**  
-Au cours de ces deux journées, les participants apprendront à :  
-- **Préparer les données** pour entraîner un CNN  
-- **Développer un réseau CNN** adapté à la classification d'images 
-- **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
-- **Construire une API** pour interagir avec le modèle entraîné  
-- **Structurer les données** pour une meilleure exploitation
-![diagramme de fulx](ressources/cnn_flux.drawio.png)
+## modifier l'API pour passer par une bdd
 
-📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
+### gestion de la base
+modification du config.py pour ajouter les paramètres de la bdd.
 
-### Déroulé de l'atelier
-- [Chapitre 1 : introduction](https://github.com/Stephane-ISEN/atelierCNN/tree/ch1_intro)
-- [Chapitre 2 : préparation des données](https://github.com/Stephane-ISEN/atelierCNN/tree/ch2_prepa_data)
-- [Chapitre 3 : Le CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_zero)
-- [Chapitre 4 : Finetuning d'un CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_finetuning)
-- [Chapitre 5: CNN accessible à travers une API Web](https://github.com/Stephane-ISEN/atelierCNN/tree/ch5_api)
-- [Chapitre 6 : Conteneurisation d'une API avec un modèle CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch6_docker)
-- [Chapitre 7 : Un client pour consommer l'API](https://github.com/Stephane-ISEN/atelierCNN/tree/ch7_client)
+ajout d'un nouveau répertoire bdd.
+création d'un classe de connexion dans le fichier connexion.py
 
-### **Sur le territoire**
+création d'une classe service, dans le fichier service.py
+l'idée : une méthode = une requête
 
-![Finist'AI Club](ressources/finistaiclub.png)
+création d'un modèle pour les données de prédictions
+### modification de l'API
+modifier le endpoint existant pour enregistrer les prédictions en bdd
+ajout d'un nouvel edn-point qui retourne toute les prédiction.
 
-![AI Days](ressources/aidays.png)
-
-![Ocean Hackathon](ressources/oceanhackathon.jpg)
+### modification du client
+ajout d'un menu pour passer de la prédiction à la liste de prédiction.
+affichage de la liste de prédiction.
 
 
