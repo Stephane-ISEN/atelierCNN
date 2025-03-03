@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .  # Chemin vers le répertoire contenant le Dockerfile
+      dockerfile: Dockerfile  # Facultatif si le fichier s'appelle Dockerfile
+    container_name: api_cnn
+    ports:
+    volumes:
+      - ./app:/code/app  # Montage pour recharger automatiquement le code (optionnel)
+    environment:
+      - PYTHONUNBUFFERED=1  # Assure que les logs apparaissent immédiatement dans la console
+    command:
