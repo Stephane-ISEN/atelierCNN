@@ -58,4 +58,52 @@ docker-compose up -d
 | **Image Docker** | Modèle qui contient l’application et ses dépendances. |
 | **Docker Compose** | Outil pour orchestrer plusieurs conteneurs avec un fichier `docker-compose.yml`. |
 
+## Conteneurisation de notre API CNN
+Commencer par mettre à jour les dépendances avec la commande `pip freeze > requirements.txt`.
+L'image utilisée pour le conteneur sera créée à partir d'une image Python, grâce au Dockerfile suivant : 
+```dockerfile
+FROM python:3.11
 
+WORKDIR /code
+COPY ./requirements.txt /code/requirements.txt
+RUN 
+COPY
+```
+Vérifiez, tout de même, que la version Python de l'image correspond à celle que vous utilisez.
+Compléter les deux dernières lignes, pour que le `RUN`lance un pip install à partir du requirements et copier le code du répertoire ``app`` vers ``code\app``.
+
+le `.dokerignore`est vide. Il faut y ajouter les chemins des répertoire à ignorer. Dans notre cas, l'environnement virtuel et les __pycache__.
+
+il reste plus qu'à préparer le docker-compose : 
+```yaml
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .  # Chemin vers le répertoire contenant le Dockerfile
+      dockerfile: Dockerfile  # Facultatif si le fichier s'appelle Dockerfile
+    container_name: api_cnn
+    volumes:
+      - ./app:/code/app  # Recharge le code source en direct (optionnel)
+    environment:
+      - PYTHONUNBUFFERED=1  # Assure que les logs apparaissent immédiatement dans la console
+    command:
+```
+Ce fichier **Docker Compose** définit un **service web** qui exécute une **API FastAPI** à l'intérieur d'un **conteneur Docker**. Il configure l’image, les ports, les volumes et les variables d’environnement : 
+- `3.9` est une version récente et stable.
+- Crée un service nommé `web`, qui correspond à l’API FastAPI.
+- Indique comment construire l’image Docker : 
+- Configuration de l’image Docker : 
+    - `context: .` → La construction se fait à partir du répertoire actuel (`.`).  
+    - `dockerfile: Dockerfile` → Spécifie le fichier `Dockerfile` à utiliser (optionnel si nommé `Dockerfile`).  
+- Nom du conteneur
+- Configuration des ports : à vous de la remplir pour faire correspondre votre port au port 80, en interne.
+- Le volume permet d’utiliser les fichiers du système hôte dans le conteneur. Il faut en rajouter 2 : un pour le requirement et l'autre pour le répertoire d'image `satelite_images`.
+- Il reste à compléter ``command:`` pour démarer l'API grâce au serveur unicorn. Attention, il vaut mieux écrire la commande en JSON : ['uvicorn',...]
+
+**Comment utiliser ce `docker-compose.yml` ?**
+- Construire et démarrer le conteneur : ``docker-compose up -d``
+- Vérifier que le conteneur tourne : ``docker ps``
+- Tester l’API dans le navigateur, sur l'url `` http://localhost:8081/docs``
+- vous pouvez stopper le conteneur : ``docker-compose down``
