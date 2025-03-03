@@ -164,3 +164,5 @@ docker-compose down
 Cette commande arrête et supprime les conteneurs créés avec Docker Compose.
 
 ## Navigation
+- [Chapitre 5: CNN accessible à travers une API Web](https://github.com/Stephane-ISEN/atelierCNN/tree/ch5_api)
+- [Chapitre 7 : Un client pour l'API](https://github.com/Stephane-ISEN/atelierCNN/tree/ch7_client)
