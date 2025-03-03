@@ -2,7 +2,7 @@
 
 ## **Création d’une Interface Web pour l’Upload d’Images avec Streamlit et API FastAPI**  
 
-###**Introduction à Streamlit**  
+### **Introduction à Streamlit**  
 [Streamlit](https://streamlit.io/) est un **framework Python** permettant de créer des applications web **interactives et intuitives** sans avoir besoin d’un développement frontend complexe. Il est particulièrement utile pour des **applications de Data Science, Machine Learning et IA**.  
 
 **Pourquoi utiliser Streamlit ?**  
