@@ -12,3 +12,6 @@ Déployer un modèle d'intelligence artificielle via une **API** permet de le re
 
 Un modèle de **classification d’images satellites** peut être déployé sous forme d'API REST. Une application web peut alors envoyer une image via une requête **HTTP POST**, et l’API renvoie un label (`forêt`, `mer`, `désert`, `nuageux`) en réponse.
 
+### FastAPI
+**FastAPI** est un framework Python rapide et performant pour créer des **API RESTful**. Il est idéal pour exposer un modèle d'IA, car il permet de gérer facilement les requêtes HTTP, d'assurer une exécution asynchrone optimisée et d'intégrer automatiquement la documentation interactive.
+
