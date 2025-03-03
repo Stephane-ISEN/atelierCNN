@@ -12,6 +12,7 @@ Déployer un modèle d'intelligence artificielle via une **API** permet de le re
 
 **Exemple d’utilisation :**  
 Un modèle de **classification d’images satellites** peut être exposé sous forme d'API REST. Une application web peut alors envoyer une image via une requête **HTTP POST**, et l’API renvoie un label (`Forêt`, `Mer`, `Désert`, `Nuageux`) en réponse.
+![diagramme de flux](ressources/cnn_flux.drawio.png)
 
 ## **FastAPI**
 [FastAPI](https://fastapi.tiangolo.com/) est un **framework Python rapide et performant** pour créer des **API RESTful**. Il est idéal pour **exposer un modèle d'IA**, car il permet :
