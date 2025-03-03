@@ -63,14 +63,14 @@ docker-compose up -d
 ## **Conteneurisation de notre API CNN**
 Nous allons **conteneuriser l’API CNN** avec **Docker**.
 
-### ** Générer les dépendances**
+### **Générer les dépendances**
 Avant de créer l’image, assurez-vous que toutes les **dépendances Python** sont bien listées :
 ```bash
 pip freeze > requirements.txt
 ```
 Ce fichier **requirements.txt** sera utilisé pour **installer les bibliothèques** dans le conteneur.
 
-## ** Création du `Dockerfile`**
+## **Création du `Dockerfile`**
 L’image utilisée pour le conteneur sera créée à partir d’une **image Python** en utilisant le fichier `Dockerfile` suivant :
 
 ```dockerfile
@@ -92,7 +92,7 @@ COPY ./app /code/app
 - **Le `RUN` installe `pip` avec le `requirements.txt`**  
 - **Le `COPY` ajoute le code source dans l’image (`app → /code/app`)**
 
-### ** Création du fichier `.dockerignore`**
+### **Création du fichier `.dockerignore`**
 Le fichier `.dockerignore` permet **d’exclure certains fichiers** du contexte de construction.  
 
 Ajoutez les **éléments à ignorer**, notamment :  
@@ -102,7 +102,7 @@ __pycache__/
 ```
 **Cela évite d’intégrer des fichiers inutiles dans l’image Docker.**
 
-### ** Création du `docker-compose.yml`**
+### **Création du `docker-compose.yml`**
 Nous allons utiliser **Docker Compose** pour **orchestrer notre conteneur**.
 
 ```yaml
