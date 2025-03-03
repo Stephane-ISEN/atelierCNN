@@ -1,47 +1,14 @@
 # 🛰️ Atelier CNN - Classification d'Images Satellites  
 
-Les réseaux de neurones convolutifs (**CNN**) sont une des technologies utilisées dans l'analyse et le traitement des images. Grâce à cet atelier, vous allez découvrir **comment entraîner un modèle de deep learning** capable de classifier des **images satellites** en différentes catégories.  
-Cet apprentissage pratique vous permettra de manipuler des données réelles et de concevoir une **solution complète**, de la préparation des données jusqu’au déploiement d’une **API permettant d’exploiter le modèle entraîné**.  
+## Web API
+Déployer un modèle d'intelligence artificielle via une **API** permet de le rendre **accessible, scalable et facilement intégrable** dans divers systèmes sans avoir besoin de redéployer le modèle à chaque utilisation.
 
-**📅 Durée : 2 jours** 
+### 🔹 **Principaux avantages :**  
+- **Accessibilité** → Toute application (web, mobile, backend) peut envoyer des requêtes et obtenir des prédictions en temps réel.
+- **Scalabilité** → L’API permet d’héberger le modèle sur un serveur centralisé et de gérer plusieurs requêtes simultanément.
+- **Mise à jour simplifiée** → On peut améliorer ou remplacer le modèle sans impacter les utilisateurs finaux.
+- **Interopérabilité** → Le modèle peut être utilisé par des applications écrites dans différents langages (Python, JavaScript, Java…).
+- **Sécurité** → L'API contrôle qui peut accéder au modèle et protège les données sensibles.  
 
-### 🏫 **Intervenants :**  
-- **Thomas Wentz** - Spécialiste AI Act, intervenant ISEN  
-- **Stéphane Jamin-Normand** - Enseignant à l'ISEN, formateur référent de l'école IA
-
-![intervenants](ressources/intervenants.png)
-
-### 🌍 **Cas concret : Classification d'images satellites**  
-Lors de cet atelier, nous allons développer un modèle de **réseau de neurones convolutifs (CNN)** capable de classer des images satellites en **4 catégories** :  
-- 🌲 **Forêts**  
-- 🌊 **Mer**  
-- 🏜️ **Désert**  
-- ☁️ **Nuageux**  
-
-### 🚀 **Objectifs pédagogiques**  
-Au cours de ces deux journées, les participants apprendront à :  
-✔️ **Préparer les données** pour entraîner un CNN  
-✔️ **Développer un réseau CNN** adapté à la classification d'images 
-
-✔️ **Comprendre les enjeux étiques** sur l'explicabilité et le droit à l'image 
-
-✔️ **Construire une API** pour interagir avec le modèle entraîné  
-✔️ **Structurer les données** pour une meilleure exploitation  
-
-📌 Cet atelier est conçu pour être **pratique et immersif**, avec un focus sur un **cas d'usage réel** pour mieux comprendre l'application des réseaux de neurones convolutifs à la vision par ordinateur. 
-
-### Déroulé de l'atelier
-- [Chapitre 1 : introduction](https://github.com/Stephane-ISEN/atelierCNN/tree/ch1_intro)
-- [Chapitre 2 : préparation des données](https://github.com/Stephane-ISEN/atelierCNN/tree/ch2_prepa_data)
-- [Chapitre 3 : Le CNN dans le détail](https://github.com/Stephane-ISEN/atelierCNN/tree/ch3_cnn_details)
-- [Chapitre 4 : Un CNN à partir de zéro](https://github.com/Stephane-ISEN/atelierCNN/tree/ch4_cnn_zero)
-
-### **Sur le territoire**
-
-![Finist'AI Club](ressources/finistaiclub.png)
-
-![AI Days](ressources/aidays.png)
-
-![Ocean Hackathon](ressources/oceanhackathon.jpg)
-
+Un modèle de **classification d’images satellites** peut être déployé sous forme d'API REST. Une application web peut alors envoyer une image via une requête **HTTP POST**, et l’API renvoie un label (`forêt`, `mer`, `désert`, `nuageux`) en réponse.
 
