@@ -22,8 +22,13 @@ Un **endpoint** est une route définie dans FastAPI qui répond à une requête 
 **Uvicorn** est un serveur ASGI (Asynchronous Server Gateway Interface) qui exécute les applications **FastAPI** de manière ultra-rapide et asynchrone. Il est essentiel pour servir l’API en production et gérer efficacement les requêtes entrantes.
 
 ## Développement de la Web API
-
-- recopier le fichier ``.pth`` dans le répertoire ``cnn_app\app\cnn``.
+Tout le code se trouve dans le répertoire ``cnn_app\api``.
+- Sur votre machine créez un environnement virtuel dans ce répertoire.
+- Puis installez les dépedances suivantes :
+  ```bash
+  pip install --upgrade -r /code/requirements.txt
+  ```
+- recopier le fichier ``.pth`` dans le répertoire ``cnn_app\api\app\modele``.
 
 Le fichier ``.pth`` contient un dictionnaire d'états du modèle. Un dictionnaire d'état de modèle est un dictionnaire Python qui associe chaque couche du modèle à ses paramètres (poids et biais). Ce dictionnaire ne contient que les paramètres du modèle, pas l'architecture elle-même.
 
