@@ -21,5 +21,48 @@ Un **endpoint** est une route définie dans FastAPI qui répond à une requête 
 ### **Uvicorn**  
 **Uvicorn** est un serveur ASGI (Asynchronous Server Gateway Interface) qui exécute les applications **FastAPI** de manière ultra-rapide et asynchrone. Il est essentiel pour servir l’API en production et gérer efficacement les requêtes entrantes.
 
+## Développement de la Web API
 
+- recopier le fichier ``.pth`` dans le répertoire ``cnn_app\app\cnn``.
 
+Le fichier ``.pth`` contient un dictionnaire d'états du modèle. Un dictionnaire d'état de modèle est un dictionnaire Python qui associe chaque couche du modèle à ses paramètres (poids et biais). Ce dictionnaire ne contient que les paramètres du modèle, pas l'architecture elle-même.
+
+- Ouvrir le fichier ``cnn.py``.
+
+dans le ``try`` recopier le code suivant :
+```python
+        # Recréer l'architecture du modèle
+        model = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.DEFAULT)  # False car on charge nos propres poids
+        #    Modifier la dernière couche du classificateur pour correspondre aux poids entraînés
+        num_classes =  # Mettre le bon nombre de classes
+        model.classifier[3] = torch.nn.Linear(in_features=1024, out_features=num_classes)
+```
+Ce code indique le modèle à utiliser avec le fichier ``.pth``. Ce modèle propose 1000 sortie, il faut rajouter une couche pour passer au nombre de classes utiles à notre modèle. 
+**Penseez à remplir la ligne suivante ``num_classes = ``.**
+
+Il faut ensuite charger notre dictionnaire d'état et démarer l'évaluation prédictive. Ajout``tez ce code à la suite du précédent, toujours dans le ``try``.
+```python
+        model_path = # Mettre le bon chemin pour le fichier pth
+        model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")), strict=False)  # Charger les poids
+        model.eval()  # Mode évaluation pour la prédiction
+```
+**Pensez à remplir la varaible ``model_path`` en indiquant le chemin de votre ``.pth``.**
+
+Après le ``try : except : `` le code prépare l'image pour sa prédiction :
+```python
+# retrouver la transformation utilisée pour entraîner le modèle
+    transform = 
+
+    image = Image.open(file_path).convert("RGB")
+    image = transform(image).unsqueeze(0)
+```
+**Pensez à retrouver la transformation de l'entrainement pour le recopier ici.**
+
+Enfin, le code fait l'interprétation et récupère les résultats.
+```python
+    output = model(image)
+    _, predicted = torch.max(output, 1)
+
+    return 
+```
+**La variable ``predicted.item()`` contient le code de la classe ayant la meilleur prédition. Nous souhaitons que le retour de la fonction predict_image() soit une chaine de caractères grâce aux dictionnaire LABEL, qui fait conrrespondre les classes à leurs labels.**
