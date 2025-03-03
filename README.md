@@ -37,6 +37,7 @@ Au cours de ces deux journées, les participants apprendront à :
 - [Chapitre 5: CNN accessible à travers une API Web](https://github.com/Stephane-ISEN/atelierCNN/tree/ch5_api)
 - [Chapitre 6 : Conteneurisation d'une API avec un modèle CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch6_docker)
 - [Chapitre 7 : Un client pour consommer l'API](https://github.com/Stephane-ISEN/atelierCNN/tree/ch7_client)
+- [Chapitre 8 : Une base de donnée pour consolider](https://github.com/Stephane-ISEN/atelierCNN/tree/ch8_bdd)
 
 ### **Sur le territoire**
 
