@@ -93,4 +93,5 @@ Ouvrez votre navigateur et accédez à : `http://localhost:8501`
 ![streamlit](ressources/client.png)
 
 ## Navigation
-
+- [Chapitre 6 : Conteneurisation d'une API avec un modèle CNN](https://github.com/Stephane-ISEN/atelierCNN/tree/ch6_docker)
+- [Chapitre 8 : Une base de donnée pour consolider](https://github.com/Stephane-ISEN/atelierCNN/tree/ch8_bdd)
