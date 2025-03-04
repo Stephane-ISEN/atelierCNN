@@ -5,7 +5,9 @@ L’utilisation d’une **base de données** pour stocker les **prédictions d�
 - **Stocker l’historique des prédictions** pour analyse.  
 - **Gérer et structurer les données** de manière centralisée.  
 - **Faciliter l’accès aux résultats** pour d'autres services ou applications.  
-- **Améliorer le suivi et la gestion** des modèles en production.  
+- **Améliorer le suivi et la gestion** des modèles en production.
+
+![diagramme de flux](ressources/cnn_flux.drawio.png)
 
 ---
 
@@ -81,6 +83,8 @@ INSERT INTO `labels` (`label`) VALUES
 docker-compose up -d
 ```
 **Vous pouvez ensuite utiliser Adminer** (`http://localhost:8080`) pour vérifier que la base est bien créée.
+
+![adminer](ressources/adminer.png)
 
 ## **Modification de l’API pour utiliser la base de données**
 Nous allons **modifier l’API FastAPI** pour **enregistrer et récupérer les prédictions** depuis la base de données.
@@ -274,6 +278,7 @@ async def list_predictions():
     return predictions
 
 ```
+![liste des prédictions](ressrouces/client.png)
 
 **Lancer Streamlit**
 ```bash
