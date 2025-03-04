@@ -278,7 +278,7 @@ async def list_predictions():
     return predictions
 
 ```
-![liste des prédictions](ressrouces/client.png)
+![liste des prédictions](ressources/client.png)
 
 **Lancer Streamlit**
 ```bash
