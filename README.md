@@ -39,6 +39,9 @@ Au cours de ces deux journées, les participants apprendront à :
 - [Chapitre 7 : Un client pour consommer l'API](https://github.com/Stephane-ISEN/atelierCNN/tree/ch7_client)
 - [Chapitre 8 : Une base de donnée pour consolider](https://github.com/Stephane-ISEN/atelierCNN/tree/ch8_bdd)
 
+### **Retour à chaud**
+[Questionnaire](https://forms.gle/fF7t1fzBxkPh4bT77)
+
 ### **Sur le territoire**
 
 ![Finist'AI Club](ressources/finistaiclub.png)
