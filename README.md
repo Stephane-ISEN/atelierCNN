@@ -1,11 +1,20 @@
-# 🛰️ Atelier CNN - Classification d'Images Satellites  
+# 🛰️ **Atelier CNN - Classification d'Images Satellites**  
 
-## interrêt de structurer les données pour l'IA en passant par une bdd ?
+## **Pourquoi structurer les données pour l'IA en passant par une base de données ?**  
+L’utilisation d’une **base de données** pour stocker les **prédictions d’un modèle d’IA** permet de :  
+- **Stocker l’historique des prédictions** pour analyse.  
+- **Gérer et structurer les données** de manière centralisée.  
+- **Faciliter l’accès aux résultats** pour d'autres services ou applications.  
+- **Améliorer le suivi et la gestion** des modèles en production.  
 
-## créer la base de données
-Nous allons passer par docker pour créer une base SQL
+---
 
-le docker-compose
+## **Création de la base de données avec Docker**
+Nous allons utiliser **Docker** pour créer une base **MySQL** et un outil d'administration **Adminer**.
+
+### **Configuration du `docker-compose.yml`**
+Ce fichier permet de **démarrer et configurer la base de données MySQL** et **Adminer**.
+
 ```yaml
 version: "3.9"
 
@@ -24,6 +33,7 @@ services:
       - ./db/databases:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
+
   adminer:
     image: adminer
     container_name: adminer_cnn
@@ -31,16 +41,13 @@ services:
     ports:
       - 8080:8080
 ```
+**Adminer** permet de **visualiser et manipuler** la base via une interface web (`http://localhost:8080`).
 
-le sql pour l'init de la base
+### **Script SQL d’initialisation (`init.sql`)**
+Ce fichier crée les **tables nécessaires** et **insère les labels** pour la classification des images satellites.
+
 ```sql
--- Adminer 4.8.1 MySQL 8.2.0 dump
-
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
+-- Initialisation de la base de données MySQL
 USE `cnn`;
 
 SET NAMES utf8mb4;
@@ -67,22 +74,24 @@ INSERT INTO `labels` (`label`) VALUES
 ('mer'),
 ('désert'),
 ('nuageux');
-
--- 2025-02-27 09:47:52
 ```
-lancer les conteneur avec la commande docker-compose
 
-Il est possible d'utiliser adminer pour vérifier l'existance de la base.
+### **Lancer la base de données**
+```bash
+docker-compose up -d
+```
+**Vous pouvez ensuite utiliser Adminer** (`http://localhost:8080`) pour vérifier que la base est bien créée.
 
-## modifier l'API pour passer par une bdd
+## **Modification de l’API pour utiliser la base de données**
+Nous allons **modifier l’API FastAPI** pour **enregistrer et récupérer les prédictions** depuis la base de données.
 
-### gestion de la base
-modification du config.py pour ajouter les paramètres de la bdd.
+### **Configuration de la base de données dans `config.py`**
+Ajoutez les paramètres de connexion à MySQL.
+
 ```python
+UPLOAD_FOLDER = "satelite_images"   # Répertoire de stockage des images
 
-UPLOAD_FOLDER = "satelite_images"   # Path to the folder where the images will be uploaded
-
-LABELS = {0:"nuageux", 1:"désert", 2:"forêt", 3:"mer"}
+LABELS = {0: "nuageux", 1: "désert", 2: "forêt", 3: "mer"}
 
 DB_NAME = "cnn"
 DB_USER = "cnn_user"
@@ -91,20 +100,21 @@ DB_HOST = "localhost"
 DB_PORT = "3306"
 ```
 
-ajout d'un nouveau répertoire bdd.
-création d'un classe de connexion dans le fichier connexion.py
+### **Création d’un module pour la gestion de la base**
+Créez un **répertoire `bdd/`** et ajoutez **`connexion.py`** pour gérer la connexion à la base.
+
+### **Fichier `connexion.py` (Connexion MySQL)**
 ```python
 import mysql.connector as mysqlpyth
-
 from app.config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 
-class Connexion :
+class Connexion:
 
     @classmethod
     def ouvrir_connexion(cls):
         cls.bdd = mysqlpyth.connect(user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT, database=DB_NAME)
         cls.cursor = cls.bdd.cursor(dictionary=True)
-    
+
     @classmethod
     def fermer_connexion(cls):
         if hasattr(cls, "cursor") and cls.cursor:
@@ -112,21 +122,22 @@ class Connexion :
         if hasattr(cls, "bdd") and cls.bdd:
             cls.bdd.close()
 ```
-création d'un modèle pour les données de prédictions
+
+### **Création d’un modèle de prédiction (`prediction.py`)**
+Définit la structure des prédictions stockées en base.
+
 ```python
 from pydantic import BaseModel
 
-class Prediction(BaseModel) :
-    id : int = None
-    image : str
-    label : str
-    commentaire : str
-    modele : str
+class Prediction(BaseModel):
+    id: int = None
+    image: str
+    label: str
+    commentaire: str
+    modele: str
 ```
 
-création d'une classe service, dans le fichier service.py
-
-l'idée : une méthode = une requête
+### **Ajout d’un service pour gérer les prédictions (`service.py`)**
 ```python
 from app.bdd.connexion import Connexion
 from app.bdd.prediction import Prediction
@@ -134,12 +145,11 @@ from app.bdd.prediction import Prediction
 class Service_Prediction(Connexion):
 
     @classmethod
-    def sauvegarder_prediction(cls, prediction:Prediction):
+    def sauvegarder_prediction(cls, prediction: Prediction):
         try:
             cls.ouvrir_connexion()
-            query = "Select id from labels where label = %s"
-            values = [prediction.label]
-            cls.cursor.execute(query, values)
+            query = "SELECT id FROM labels WHERE label = %s"
+            cls.cursor.execute(query, [prediction.label])
             label = cls.cursor.fetchone()["id"]
 
             query = "INSERT INTO predictions (image, label, commentaire, modele) VALUES (%s, %s, %s, %s)"
@@ -149,37 +159,34 @@ class Service_Prediction(Connexion):
             cls.bdd.commit()
 
         except Exception as e:
-                print(f"Une erreur inattendue est survenue :{e}")
+            print(f"Erreur : {e}")
         
         finally:
             cls.fermer_connexion()
-    
+
     @classmethod
     def lister_predictions(cls):
-        predictions=[]
-
+        predictions = []
         try:
             cls.ouvrir_connexion()
-            query = "SELECT predictions.image as image, labels.label as label, predictions.commentaire as commentaire, predictions.modele as modele FROM predictions JOIN labels ON predictions.label = labels.id"
+            query = "SELECT predictions.image, labels.label, predictions.commentaire, predictions.modele FROM predictions JOIN labels ON predictions.label = labels.id"
             cls.cursor.execute(query)
-              
-            for prediction_lue in cls.cursor :
-                prediction = Prediction(image=prediction_lue["image"], label=prediction_lue["label"], commentaire=prediction_lue["commentaire"], modele=prediction_lue["modele"])
-                predictions.append(prediction)
+            for row in cls.cursor:
+                predictions.append(Prediction(**row))
 
         except Exception as e:
-            print(f"Une erreur inattendue est survenue :{e}")
+            print(f"Erreur : {e}")
         
         finally:
             cls.fermer_connexion()
-        
+
         return predictions
 ```
 
+## **Modification de l’API FastAPI**
+Nous allons **modifier le endpoint existant** pour enregistrer les prédictions en base et ajouter un **nouveau endpoint** pour les récupérer.
 
-### modification de l'API
-modifier le endpoint existant pour enregistrer les prédictions en bdd
-ajout d'un nouvel edn-point qui retourne toute les prédiction.`
+### **Mise à jour du fichier `main.py`**
 ```python
 from fastapi import FastAPI, File, UploadFile, HTTPException
 import shutil
@@ -198,35 +205,37 @@ app = FastAPI()
 async def index():
     return "API Prediction!"
 
-@app.post("/predictions/satelite/")
+@app.post("/predictions/satellite/")
 async def upload_image(file: UploadFile = File(...)):
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
     if not file.filename.endswith(("jpg", "jpeg", "png")):
         raise HTTPException(status_code=400, detail="Format non supporté")
 
-    with open(file_path, "wb") as buffer :
+    with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-        
-    
+
     label = cnn.predict_image(file_path)
     prediction = Prediction(image=file_path, label=label, commentaire="OK", modele="CNN")
     Service_Prediction.sauvegarder_prediction(prediction)
 
-    #return {'filename':file.filename, "prediction":label}
-    return {"prediction": prediction }
+    return {"prediction": prediction}
 
 @app.get("/predictions/")
 async def list_predictions():
     predictions = Service_Prediction.lister_predictions()
     return predictions
 ```
-démarrer le serveur uvicorn.
 
-### modification du client
-ajout d'un menu pour passer de la prédiction à la liste de prédiction.
-affichage de la liste de prédiction.
+### **Lancer l’API**
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
+```
 
-démarrer le streamlit.
+## **Mise à jour du client Streamlit**
+Ajoutez un **menu** pour naviguer entre la prédiction et la liste des prédictions.
 
-
+**Lancer Streamlit**
+```bash
+streamlit run app.py
+```
