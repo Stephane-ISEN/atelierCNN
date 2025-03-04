@@ -78,14 +78,105 @@ Il est possible d'utiliser adminer pour vérifier l'existance de la base.
 
 ### gestion de la base
 modification du config.py pour ajouter les paramètres de la bdd.
+```python
+
+UPLOAD_FOLDER = "satelite_images"   # Path to the folder where the images will be uploaded
+
+LABELS = {0:"nuageux", 1:"désert", 2:"forêt", 3:"mer"}
+
+DB_NAME = "cnn"
+DB_USER = "cnn_user"
+DB_PASSWORD = "cnn_pwd"
+DB_HOST = "localhost"
+DB_PORT = "3306"
+```
 
 ajout d'un nouveau répertoire bdd.
 création d'un classe de connexion dans le fichier connexion.py
+```python
+import mysql.connector as mysqlpyth
+
+from app.config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+
+class Connexion :
+
+    @classmethod
+    def ouvrir_connexion(cls):
+        cls.bdd = mysqlpyth.connect(user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT, database=DB_NAME)
+        cls.cursor = cls.bdd.cursor(dictionary=True)
+    
+    @classmethod
+    def fermer_connexion(cls):
+        if hasattr(cls, "cursor") and cls.cursor:
+            cls.cursor.close()
+        if hasattr(cls, "bdd") and cls.bdd:
+            cls.bdd.close()
+```
+création d'un modèle pour les données de prédictions
+```python
+from pydantic import BaseModel
+
+class Prediction(BaseModel) :
+    id : int = None
+    image : str
+    label : str
+    commentaire : str
+    modele : str
+```
 
 création d'une classe service, dans le fichier service.py
-l'idée : une méthode = une requête
 
-création d'un modèle pour les données de prédictions
+l'idée : une méthode = une requête
+```python
+from app.bdd.connexion import Connexion
+from app.bdd.prediction import Prediction
+
+class Service_Prediction(Connexion):
+
+    @classmethod
+    def sauvegarder_prediction(cls, prediction:Prediction):
+        try:
+            cls.ouvrir_connexion()
+            query = "Select id from labels where label = %s"
+            values = [prediction.label]
+            cls.cursor.execute(query, values)
+            label = cls.cursor.fetchone()["id"]
+
+            query = "INSERT INTO predictions (image, label, commentaire, modele) VALUES (%s, %s, %s, %s)"
+            values = [prediction.image, label, prediction.commentaire, prediction.modele]
+            
+            cls.cursor.execute(query, values)
+            cls.bdd.commit()
+
+        except Exception as e:
+                print(f"Une erreur inattendue est survenue :{e}")
+        
+        finally:
+            cls.fermer_connexion()
+    
+    @classmethod
+    def lister_predictions(cls):
+        predictions=[]
+
+        try:
+            cls.ouvrir_connexion()
+            query = "SELECT predictions.image as image, labels.label as label, predictions.commentaire as commentaire, predictions.modele as modele FROM predictions JOIN labels ON predictions.label = labels.id"
+            cls.cursor.execute(query)
+              
+            for prediction_lue in cls.cursor :
+                prediction = Prediction(image=prediction_lue["image"], label=prediction_lue["label"], commentaire=prediction_lue["commentaire"], modele=prediction_lue["modele"])
+                predictions.append(prediction)
+
+        except Exception as e:
+            print(f"Une erreur inattendue est survenue :{e}")
+        
+        finally:
+            cls.fermer_connexion()
+        
+        return predictions
+```
+
+
 ### modification de l'API
 modifier le endpoint existant pour enregistrer les prédictions en bdd
 ajout d'un nouvel edn-point qui retourne toute les prédiction.
