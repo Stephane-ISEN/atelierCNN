@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql
+    container_name: db_cnn
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=cnn 
+      - MYSQL_USER=cnn_user
+      - MYSQL_PASSWORD=cnn_pwd
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/databases:/var/lib/mysql
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+  adminer:
+    image: adminer
+    container_name: adminer_cnn
+    restart: always
+    ports:
+      - 8080:8080
