@@ -221,9 +221,12 @@ async def list_predictions():
     predictions = Service_Prediction.lister_predictions()
     return predictions
 ```
+démarrer le serveur uvicorn.
 
 ### modification du client
 ajout d'un menu pour passer de la prédiction à la liste de prédiction.
 affichage de la liste de prédiction.
+
+démarrer le streamlit.
 
 
